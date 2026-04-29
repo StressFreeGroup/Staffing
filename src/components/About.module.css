@@ -1,13 +1,13 @@
 .about {
   background: var(--sand);
-  padding: 6rem 3rem;
+  padding: 5rem 3rem;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
+  gap: 3rem;
+  align-items: start;
   max-width: 1200px;
   margin: 0 auto;
 }
