@@ -1,53 +1,41 @@
-import styles from './About.module.css'
+import s from './About.module.css'
 
-const features = [
-  { icon: '⚡', title: 'Dedicated Contacts', desc: 'Primary and secondary POCs for every campaign. Streamlined communication, no confusion.' },
-  { icon: '📊', title: 'Proven Results', desc: 'Data-driven approach with comprehensive reporting and reconciliation on every activation.' },
-  { icon: '💰', title: 'Competitive Pricing', desc: 'Lean core staff and low overhead means better rates without sacrificing quality.' },
-  { icon: '🛠', title: 'Full Compliance', desc: 'Unions, permits, licenses, certificates, insurance — we know the requirements inside and out.' },
-]
-
-const brands = ['MTV', "McDonald's", 'MasterCard', 'PepsiCo', 'Celsius', 'AQUAhydrate', 'SoBe', 'No Fear', "Jerry's Vodka"]
+const brands = ['MTV',"McDonald's",'MasterCard','PepsiCo','Celsius','AQUAhydrate','Coors Light','Twitter','Geico','SoBe','No Fear',"Jerry's Vodka"]
 
 export default function About() {
   return (
-    <section className={styles.about} id="about">
-      <div className={styles.grid}>
-        <div className="reveal">
-          <div className={styles.label}>Why Stress Free</div>
-          <h2 className={styles.title}>Built on 25 Years<br />of Field Experience</h2>
-          <p className={styles.desc}>
-            Stress Free Staffing & Events operates under the{' '}
-            <a href="https://www.StressFreeGroup.com" target="_blank" rel="noreferrer" className={styles.link}>
-              Stress Free Group LLC
-            </a>{' '}
-            umbrella — expanding our proven services into experiential marketing, staffing, and event production. Led by Michael Katz with 25+ years of hands-on experience, from nightlife promotions at age 16 to managing grand-scale nationwide campaigns for the world's biggest brands.
-          </p>
-          <div className={styles.features}>
-            {features.map((f) => (
-              <div key={f.title} className={styles.feature}>
-                <div className={styles.featureIcon}>{f.icon}</div>
-                <h4>{f.title}</h4>
-                <p>{f.desc}</p>
-              </div>
-            ))}
+    <section className={s.section} id="about">
+      <div className="container">
+        <div className={`${s.top} reveal`}>
+          <span className={s.label}>About</span>
+          <h2>The Stress Free <span>Difference</span></h2>
+          <p className={s.intro}>Stress Free Staffing & Events operates under the <a href="https://www.StressFreeGroup.com" target="_blank" rel="noreferrer">Stress Free Group LLC</a> umbrella — expanding our proven services into experiential marketing, staffing, and event production. Led by Michael Katz with 25+ years of hands-on experience.</p>
+        </div>
+        <div className={s.grid}>
+          <div className={`${s.card} reveal`}>
+            <div className={s.cardIcon}>⚡</div>
+            <h4>Dedicated Contacts</h4>
+            <p>Primary and secondary POCs for every campaign. Streamlined communication, no confusion.</p>
+          </div>
+          <div className={`${s.card} reveal`}>
+            <div className={s.cardIcon}>📊</div>
+            <h4>Proven Results</h4>
+            <p>Data-driven approach with comprehensive reporting and reconciliation on every activation.</p>
+          </div>
+          <div className={`${s.card} reveal`}>
+            <div className={s.cardIcon}>💰</div>
+            <h4>Competitive Pricing</h4>
+            <p>Lean core staff and low overhead means better rates without sacrificing quality.</p>
+          </div>
+          <div className={`${s.card} reveal`}>
+            <div className={s.cardIcon}>🛠</div>
+            <h4>Full Compliance</h4>
+            <p>Unions, permits, licenses, certificates, insurance — we know the requirements inside and out.</p>
           </div>
         </div>
-        <div className="reveal">
-          <div className={styles.card}>
-            <h3>The Stress Free Difference</h3>
-            <p>
-              As part of the Stress Free Group family of services, Stress Free Staffing brings the same dedication to excellence across every industry we touch. We've synthesized the Strategy for Success — our field-proven playbook built from decades of activations — delivering institutional knowledge, battle-tested processes, and a passion for execution that turns campaigns into measurable wins for your brand.
-            </p>
-            <div className={styles.brands}>
-              <h5>Brands We've Worked With</h5>
-              <div className={styles.brandTags}>
-                {brands.map((b) => (
-                  <span key={b} className={styles.tag}>{b}</span>
-                ))}
-              </div>
-            </div>
-          </div>
+        <div className={`${s.brands} reveal`}>
+          <h5>Trusted by Leading Brands</h5>
+          <div className={s.tags}>{brands.map(b => <span key={b} className={s.tag}>{b}</span>)}</div>
         </div>
       </div>
     </section>

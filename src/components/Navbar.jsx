@@ -1,38 +1,30 @@
 import { useState, useEffect } from 'react'
-import styles from './Navbar.module.css'
+import s from './Navbar.module.css'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-
+  const [open, setOpen] = useState(false)
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
+    const fn = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', fn)
+    return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  const closeMenu = () => setMenuOpen(false)
-
   return (
-    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
-      <a href="#" className={styles.logo}>
-        <div className={styles.logoIcon}>SF</div>
-        <div className={styles.logoText}>
-          Stress Free
-          <span>Staffing & Events</span>
-        </div>
-      </a>
-      <ul className={`${styles.links} ${menuOpen ? styles.active : ''}`}>
-        <li><a href="#about" onClick={closeMenu}>About</a></li>
-        <li><a href="#services" onClick={closeMenu}>Services</a></li>
-        <li><a href="#staffing" onClick={closeMenu}>Staffing</a></li>
-        <li><a href="#expertise" onClick={closeMenu}>Expertise</a></li>
-        <li><a href="#testimonials" onClick={closeMenu}>Testimonials</a></li>
-        <li><a href="#contact" className={styles.cta} onClick={closeMenu}>Get Started</a></li>
-      </ul>
-      <button className={styles.toggle} onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle Menu">
-        <span /><span /><span />
-      </button>
+    <nav className={`${s.nav} ${scrolled ? s.scrolled : ''}`}>
+      <div className={`container ${s.inner}`}>
+        <a href="#" className={s.logo}>
+          <div className={s.icon}>SF</div>
+          <div className={s.text}>Stress Free<span>Staffing & Events</span></div>
+        </a>
+        <ul className={`${s.links} ${open ? s.open : ''}`}>
+          {['About','Services','Staffing','Process','Testimonials'].map(i => (
+            <li key={i}><a href={`#${i.toLowerCase()}`} onClick={() => setOpen(false)}>{i}</a></li>
+          ))}
+          <li><a href="#contact" className={s.cta} onClick={() => setOpen(false)}>Get Started</a></li>
+        </ul>
+        <button className={s.burger} onClick={() => setOpen(!open)} aria-label="Menu"><span/><span/><span/></button>
+      </div>
     </nav>
   )
 }

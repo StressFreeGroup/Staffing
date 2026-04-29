@@ -1,99 +1,15 @@
-.testimonials {
-  background: var(--navy);
-  color: white;
-  padding: 5rem 3rem;
-}
-
-.inner {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.label {
-  font-size: 0.7rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--purple-light);
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-}
-
-.title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
-  line-height: 1.1;
-  font-weight: 700;
-  color: white;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 2rem;
-  transition: all 0.3s;
-}
-
-.card:hover {
-  border-color: rgba(108, 63, 160, 0.3);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.quote {
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  color: var(--purple);
-  line-height: 1;
-  margin-bottom: 0.5rem;
-  opacity: 0.5;
-}
-
-.card p {
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.65);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-}
-
-.author {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, var(--purple), var(--blue));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Playfair Display', serif;
-  font-size: 0.9rem;
-  color: white;
-  font-weight: 600;
-}
-
-.author h5 {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: white;
-}
-
-.author span {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.45);
-}
-
-@media (max-width: 900px) {
-  .testimonials { padding: 4rem 1.5rem; }
-  .grid { grid-template-columns: 1fr; }
-}
+.section { padding: 5rem 0; background: var(--navy); }
+.top { text-align: center; margin-bottom: 2.5rem; }
+.label { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--purple-light); font-weight: 600; display: block; margin-bottom: 0.5rem; }
+.top h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; color: white; }
+.top h2 span { color: var(--purple-light); }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 1.5rem; transition: all 0.25s; }
+.card:hover { border-color: rgba(108,63,160,0.3); background: rgba(255,255,255,0.06); }
+.quote { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--purple); line-height: 1; margin-bottom: 0.25rem; opacity: 0.5; }
+.card p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 1.25rem; }
+.author { display: flex; align-items: center; gap: 0.6rem; }
+.avatar { width: 36px; height: 36px; background: linear-gradient(135deg, var(--purple), var(--blue)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 0.8rem; color: white; font-weight: 600; }
+.author h5 { font-size: 0.82rem; font-weight: 600; color: white; }
+.author span { font-size: 0.7rem; color: rgba(255,255,255,0.4); }
+@media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }

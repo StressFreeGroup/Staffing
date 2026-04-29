@@ -1,172 +1,20 @@
-.about {
-  background: var(--sand);
-  padding: 5rem 3rem;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: start;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.label {
-  font-size: 0.7rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--purple);
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-}
-
-.title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
-  line-height: 1.1;
-  margin-bottom: 1.25rem;
-  font-weight: 700;
-  color: var(--navy);
-}
-
-.desc {
-  color: var(--text-mid);
-  font-size: 1.02rem;
-  line-height: 1.7;
-  max-width: 560px;
-}
-
-.link {
-  color: var(--purple);
-  font-weight: 600;
-}
-
-.features {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-  margin-top: 2.5rem;
-}
-
-.feature {
-  background: var(--warm-white);
-  border: 1px solid rgba(30, 42, 74, 0.06);
-  border-radius: 14px;
-  padding: 1.5rem;
-  transition: all 0.3s;
-}
-
-.feature:hover {
-  border-color: var(--purple);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(30, 42, 74, 0.05);
-}
-
-.featureIcon {
-  width: 42px;
-  height: 42px;
-  background: rgba(108, 63, 160, 0.08);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.85rem;
-  font-size: 1.15rem;
-}
-
-.feature h4 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.4rem;
-  color: var(--navy);
-}
-
-.feature p {
-  font-size: 0.82rem;
-  color: var(--text-mid);
-  line-height: 1.55;
-}
-
-.card {
-  background: var(--navy);
-  border-radius: 20px;
-  padding: 2.75rem;
-  position: relative;
-  overflow: hidden;
-  color: white;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: -30%;
-  right: -30%;
-  width: 160%;
-  height: 160%;
-  background: radial-gradient(circle, rgba(108, 63, 160, 0.12) 0%, transparent 55%);
-  animation: glow 20s linear infinite;
-}
-
-.card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  position: relative;
-}
-
-.card p {
-  font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 1.7;
-  position: relative;
-}
-
-.brands {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-}
-
-.brands h5 {
-  font-size: 0.68rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 0.75rem;
-  font-weight: 500;
-}
-
-.brandTags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.tag {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.3rem 0.75rem;
-  border-radius: 100px;
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.6);
-  transition: all 0.3s;
-}
-
-.tag:hover {
-  border-color: var(--purple);
-  color: var(--purple-light);
-  background: rgba(108, 63, 160, 0.15);
-}
-
-@media (max-width: 900px) {
-  .about { padding: 4rem 1.5rem; }
-  .grid { grid-template-columns: 1fr; gap: 2.5rem; }
-}
-
-@media (max-width: 600px) {
-  .features { grid-template-columns: 1fr; }
-}
+.section { padding: 5rem 0; background: white; }
+.top { text-align: center; max-width: 640px; margin: 0 auto 3rem; }
+.label { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); font-weight: 600; display: block; margin-bottom: 0.5rem; }
+.top h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; color: var(--navy); margin-bottom: 1rem; }
+.top h2 span { color: var(--purple); }
+.intro { font-size: 0.95rem; color: var(--text-mid); line-height: 1.7; }
+.intro a { color: var(--purple); font-weight: 600; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 3rem; }
+.card { background: var(--off-white); border: 1px solid var(--border-light); border-radius: 14px; padding: 1.5rem; transition: all 0.25s; }
+.card:hover { border-color: var(--purple); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(108,63,160,0.08); }
+.cardIcon { width: 40px; height: 40px; background: rgba(108,63,160,0.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 0.75rem; }
+.card h4 { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 0.35rem; }
+.card p { font-size: 0.8rem; color: var(--text-mid); line-height: 1.5; }
+.brands { text-align: center; padding: 2rem; background: var(--navy); border-radius: 16px; }
+.brands h5 { font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.45); font-weight: 500; margin-bottom: 0.75rem; }
+.tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem; }
+.tag { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); padding: 0.3rem 0.85rem; border-radius: 100px; font-size: 0.75rem; color: rgba(255,255,255,0.65); transition: all 0.2s; }
+.tag:hover { border-color: var(--purple-light); color: var(--purple-light); }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 500px) { .grid { grid-template-columns: 1fr; } }
