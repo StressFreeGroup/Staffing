@@ -1,6 +1,19 @@
 import s from './About.module.css'
 
-const brands = ['MTV',"McDonald's",'MasterCard','PepsiCo','Celsius','AQUAhydrate','Coors Light','Twitter','Geico','SoBe','No Fear',"Jerry's Vodka"]
+const brands = [
+  { name: 'MTV', weight: 900 },
+  { name: "McDonald's", weight: 700 },
+  { name: 'MasterCard', weight: 700 },
+  { name: 'PepsiCo', weight: 700 },
+  { name: 'Celsius', weight: 600 },
+  { name: 'AQUAhydrate', weight: 600 },
+  { name: 'Coors Light', weight: 700 },
+  { name: 'Twitter', weight: 700 },
+  { name: 'Geico', weight: 700 },
+  { name: 'SoBe', weight: 800 },
+  { name: 'No Fear', weight: 800 },
+  { name: "Jerry's Vodka", weight: 600 },
+]
 
 export default function About() {
   return (
@@ -33,9 +46,15 @@ export default function About() {
             <p>Unions, permits, licenses, certificates, insurance — we know the requirements inside and out.</p>
           </div>
         </div>
-        <div className={`${s.brands} reveal`}>
-          <h5>Trusted by Leading Brands</h5>
-          <div className={s.tags}>{brands.map(b => <span key={b} className={s.tag}>{b}</span>)}</div>
+        <div className={`${s.brandWall} reveal`}>
+          <h5>Brands We've Worked With</h5>
+          <div className={s.brandGrid}>
+            {brands.map(b => (
+              <div key={b.name} className={s.brandCell}>
+                <span style={{ fontWeight: b.weight }}>{b.name}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
