@@ -1,0 +1,219 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 3rem 4rem;
+  overflow: hidden;
+  background: var(--warm-white);
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 80%, rgba(108, 63, 160, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 20%, rgba(58, 123, 213, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(243, 241, 248, 0.5) 0%, transparent 80%);
+}
+
+.deco {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--purple), transparent);
+  opacity: 0.3;
+}
+
+.content {
+  position: relative;
+  max-width: 780px;
+  z-index: 2;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(108, 63, 160, 0.08);
+  border: 1px solid rgba(108, 63, 160, 0.15);
+  color: var(--purple);
+  padding: 0.45rem 1.1rem;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.8s var(--transition) both;
+}
+
+.badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--purple);
+  border-radius: 50%;
+  animation: pulse 2s ease infinite;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 1.05;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s var(--transition) 0.1s both;
+  color: var(--navy);
+}
+
+.accent {
+  color: var(--purple);
+}
+
+.light {
+  font-weight: 400;
+  color: var(--slate);
+}
+
+.sub {
+  font-size: 1.1rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+  max-width: 540px;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.8s var(--transition) 0.2s both;
+}
+
+.link {
+  color: var(--purple);
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s var(--transition) 0.3s both;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  background: var(--purple);
+  color: white;
+  transition: all 0.3s var(--transition);
+}
+
+.btnPrimary:hover {
+  background: var(--purple-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(108, 63, 160, 0.2);
+}
+
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid var(--sand-dark);
+  transition: all 0.3s var(--transition);
+}
+
+.btnOutline:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
+.stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+  animation: fadeUp 0.8s var(--transition) 0.4s both;
+}
+
+.stat h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  color: var(--navy);
+  line-height: 1;
+  font-weight: 700;
+}
+
+.stat p {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
+.side {
+  position: absolute;
+  right: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  z-index: 2;
+  animation: fadeRight 1s var(--transition) 0.5s both;
+}
+
+.sideCard {
+  background: var(--sand-light);
+  border: 1px solid var(--sand-dark);
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 270px;
+  transition: all 0.3s;
+}
+
+.sideCard:hover {
+  border-color: var(--purple);
+  box-shadow: 0 8px 30px rgba(30, 42, 74, 0.06);
+  transform: translateY(-2px);
+}
+
+.sideCard h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--navy);
+}
+
+.sideCard p {
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  line-height: 1.55;
+}
+
+@media (max-width: 1100px) {
+  .side { display: none; }
+}
+
+@media (max-width: 900px) {
+  .hero { padding: 7rem 1.5rem 3rem; }
+  .stats { gap: 2rem; }
+}
+
+@media (max-width: 600px) {
+  .title { font-size: 2.6rem; }
+  .stats { flex-direction: column; gap: 1.5rem; }
+}

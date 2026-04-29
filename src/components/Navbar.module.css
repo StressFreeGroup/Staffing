@@ -1,0 +1,140 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.25rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.4s ease;
+}
+
+.scrolled {
+  background: rgba(249, 248, 252, 0.92);
+  backdrop-filter: blur(20px);
+  padding: 0.75rem 3rem;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 20px rgba(30, 42, 74, 0.04);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-dark);
+}
+
+.logoIcon {
+  width: 44px;
+  height: 44px;
+  background: var(--purple);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: white;
+  font-weight: 700;
+}
+
+.logoText {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.logoText span {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--purple);
+}
+
+.links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  align-items: center;
+}
+
+.links a {
+  color: var(--text-mid);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.links a:hover {
+  color: var(--purple);
+}
+
+.cta {
+  background: var(--purple) !important;
+  color: white !important;
+  padding: 0.6rem 1.5rem;
+  border-radius: 100px;
+  font-weight: 600 !important;
+  transition: all 0.3s !important;
+}
+
+.cta:hover {
+  background: var(--purple-dark) !important;
+  transform: translateY(-1px);
+}
+
+.toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 5px;
+}
+
+.toggle span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--text-dark);
+  border-radius: 2px;
+}
+
+@media (max-width: 900px) {
+  .nav {
+    padding: 1rem 1.5rem;
+  }
+
+  .scrolled {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(249, 248, 252, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 2rem;
+    gap: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .toggle {
+    display: flex;
+  }
+}
