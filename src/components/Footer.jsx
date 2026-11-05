@@ -1,15 +1,36 @@
 import s from './Footer.module.css'
 
+const family = [
+  ['Stress Free Group', 'https://www.stressfreegroup.com'],
+  ['Stress Free RVs', 'https://www.stressfreervs.com'],
+]
+
 export default function Footer() {
   return (
     <footer className={s.footer}>
       <div className={`container ${s.inner}`}>
-        <div><div className={s.brand}>Stress Free Staffing & Events</div><div className={s.copy}>&copy; {new Date().getFullYear()} Stress Free Group LLC. All Rights Reserved.</div></div>
-        <div className={s.links}>
-          <a href="https://www.StressFreeGroup.com" target="_blank" rel="noreferrer">Stress Free Group</a>
-          <a href="https://stressfreervs.com" target="_blank" rel="noreferrer">Stress Free RVs</a>
-          <a href="#contact">Contact</a>
+        <div className={s.brand}>
+          <img src="/brand/logo-wordmark-white.webp" alt="Stress Free Staffing Nationwide" width="560" height="189" loading="lazy" />
+          <p>Event staffing, sampling and experiential marketing — nationwide.</p>
         </div>
+        <nav className={s.cols} aria-label="Footer">
+          <div>
+            <h4>Explore</h4>
+            <a href="#work">Past Work</a><a href="#services">Services</a><a href="#staffing">Staffing</a><a href="#clients">Clients</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <a href="tel:+16196637262">(619) 663-7262</a><a href="mailto:Mike@StressFreeGroup.com">Mike@StressFreeGroup.com</a><a href="#contact">Request a Quote</a>
+          </div>
+          <div>
+            <h4>The Stress Free family</h4>
+            {family.map(([n, u]) => <a key={n} href={u} target="_blank" rel="noreferrer">{n}</a>)}
+          </div>
+        </nav>
+      </div>
+      <div className={`container ${s.bottom}`}>
+        <span>&copy; {new Date().getFullYear()} Stress Free Group LLC. All rights reserved.</span>
+        <span>A Stress Free Group company</span>
       </div>
     </footer>
   )

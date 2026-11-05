@@ -1,27 +1,36 @@
 import s from './Staffing.module.css'
 
-const roles = ['Promotional Models','Brand Ambassadors','Team Leads','Market Managers','General Labor','Drivers','Account Coordinators','Production Staff','Demonstrators','Educators','Event Managers','Setup & Strike Crew']
-const caps = ['Sampling','Tastings','Demonstrations','Data Capture','Inventory Management','Supply Replenishment','Brand Advocacy','Consumer Education','Product Giveaways','Impressions','Interactions','Brand Awareness','Brand Loyalty']
+const roles = ['Brand Ambassadors', 'Promotional Models', 'Trade Show Spokesmodels', 'Product Demonstrators', 'Team Leads', 'Event & Market Managers', 'Street & Guerrilla Teams', 'Hosts & Hostesses', 'Emcees, DJs & Talent', 'Bartenders', 'Drivers', 'Set-Up & Strike Crew', 'Account Coordinators', 'Educators & Trainers']
+
+const steps = [
+  ['Sourced', 'From a database of 20,000+ vetted professionals in every major U.S. market.'],
+  ['Screened', 'Vetted and hand-matched to your brand, audience and campaign requirements.'],
+  ['Trained', 'Brand education, product knowledge and talking points before day one.'],
+  ['Tracked', 'GPS clock-in/out, photo check-ins and live communication on every shift.'],
+]
 
 export default function Staffing() {
   return (
-    <section className={s.section} id="staffing">
-      <div className="container">
-        <div className={s.grid}>
-          <div className="reveal">
-            <span className={s.label}>Staffing</span>
-            <h2>20,000+ Vetted <span>Professionals</span></h2>
-            <p className={s.desc}>Every team member is sourced, vetted, trained, and matched to your brand's specific needs and campaign requirements.</p>
-            <div className={s.caps}>{caps.map(c => <span key={c} className={s.cap}>{c}</span>)}</div>
-          </div>
-          <div className={`${s.roles} reveal`}>
-            {roles.map(r => (
-              <div key={r} className={s.role}>
-                <div className={s.dot} />
-                <span>{r}</span>
-              </div>
+    <section className={`section ${s.section}`} id="staffing">
+      <div className={`container ${s.grid}`}>
+        <div className="reveal">
+          <span className={`eyebrow ${s.eyebrow}`}>Staffing</span>
+          <h2 className={`h2 ${s.h2}`}>20,000+ vetted pros. <em>The right ones for your brand.</em></h2>
+          <p className={s.desc}>We don't send bodies — we send people who represent your brand like it's their own, backed by a manager who answers the phone.</p>
+          <ol className={s.steps}>
+            {steps.map(([t, d], i) => (
+              <li key={t}><span>{String(i + 1).padStart(2, '0')}</span><div><h3>{t}</h3><p>{d}</p></div></li>
             ))}
+          </ol>
+        </div>
+        <div className="reveal">
+          <div className={s.photos}>
+            <img src="/work/celsius-cheers.webp" width="1400" height="933" alt="Celsius ambassadors toasting at their booth" loading="lazy" />
+            <img src="/work/boost-truck-staff.webp" width="1400" height="1050" alt="Boost Mobile brand ambassadors at the taco truck" loading="lazy" />
+            <img src="/work/dunkin-team.webp" width="1400" height="1050" alt="Dunkin' marathon team" loading="lazy" />
           </div>
+          <h3 className={s.rolesTitle}>Roles we staff</h3>
+          <ul className={s.roles}>{roles.map((r) => <li key={r}>{r}</li>)}</ul>
         </div>
       </div>
     </section>

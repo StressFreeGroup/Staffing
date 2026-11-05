@@ -1,32 +1,40 @@
+import Icon from './Icon'
 import s from './Services.module.css'
 
 const data = [
-  { icon: '🎯', t: 'Brand Activations', d: 'Immersive brand experiences from concept to execution — planning, production, and activation management.' },
-  { icon: '🧪', t: 'Sampling Campaigns', d: 'Nationwide on/off-premise sampling, festivals, concerts, retail. Tastings, demos, education, and data capture.' },
-  { icon: '👥', t: 'Event Staffing', d: '20,000+ vetted professionals — brand ambassadors, promo models, team leads, market managers, drivers, and crew.' },
-  { icon: '📋', t: 'Campaign Management', d: 'End-to-end program development — training, logistics, vendor coordination, procurement, and budget management.' },
-  { icon: '🏗', t: 'Event Production', d: 'On-site build-out, display booth development, strike and transport, footprint design, and sponsorship activations.' },
-  { icon: '📢', t: 'Experiential Marketing', d: 'Memorable brand-consumer touchpoints driving impressions, interactions, awareness, loyalty, and advocacy.' },
-  { icon: '🎓', t: 'Training & Education', d: 'Staff training, brand education, product knowledge development, presentation prep, and team briefings.' },
-  { icon: '📈', t: 'Reporting & Analytics', d: 'Post-event reporting, reconciliation, inventory management, data analysis, and ROI documentation.' },
+  { icon: 'users', t: 'Event Staffing', d: 'Brand ambassadors, spokesmodels, hosts, team leads, market managers, drivers and set-up/strike crew — booked, briefed and on time.' },
+  { icon: 'cup', t: 'Sampling Programs', d: 'Street, retail, on- and off-premise sampling with a purpose: education, trial, cans in hands and data capture.' },
+  { icon: 'spark', t: 'Brand Activations', d: 'Immersive experiences from concept to strike — footprint design, run of show, vendor coordination and on-site management.' },
+  { icon: 'stage', t: 'Trade Shows & Conventions', d: 'Booth production plus trade-ready spokesmodels who know your product and capture qualified leads.' },
+  { icon: 'pin', t: 'Mobile & Guerrilla Tours', d: 'Wrapped vehicles, food trucks, street teams and multi-city tours with routing, permits and daily reporting.' },
+  { icon: 'clipboard', t: 'Campaign Management', d: 'End-to-end program builds: budgets, procurement, logistics, training, scheduling and quality control.' },
+  { icon: 'book', t: 'Training & Education', d: 'Brand-specific training decks, product knowledge, talking points and pre-shift briefings for every team.' },
+  { icon: 'report', t: 'Reporting & Recaps', d: 'GPS-verified shifts, photo check-ins, inventory reconciliation and post-event recaps with real numbers.' },
 ]
+
+const venues = ['Festivals & concerts', 'Trade shows & expos', 'Sporting events', 'College campuses', 'Retail & grocery', 'Nightlife & VIP', 'Conventions', 'Street teams', 'Corporate events', 'Product launches']
 
 export default function Services() {
   return (
-    <section className={s.section} id="services">
+    <section className="section" id="services">
       <div className="container">
-        <div className={`${s.top} reveal`}>
-          <span className={s.label}>Services</span>
-          <h2>Full-Service <span>Capabilities</span></h2>
+        <div className="sectionHead reveal">
+          <span className="eyebrow">Services</span>
+          <h2 className="h2">Full-service, <em>from booking to recap.</em></h2>
+          <p className="lede">Hire us for a single shift or hand us the whole program. Either way you get one accountable team.</p>
         </div>
         <div className={s.grid}>
           {data.map((d) => (
-            <div key={d.t} className={`${s.card} reveal`}>
-              <div className={s.icon}>{d.icon}</div>
+            <article key={d.t} className={`${s.card} reveal`}>
+              <span className={s.icon}><Icon name={d.icon} size={24} /></span>
               <h3>{d.t}</h3>
               <p>{d.d}</p>
-            </div>
+            </article>
           ))}
+        </div>
+        <div className={`${s.venues} reveal`}>
+          <span>Where we show up</span>
+          <ul>{venues.map((v) => <li key={v}>{v}</li>)}</ul>
         </div>
       </div>
     </section>
