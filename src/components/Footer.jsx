@@ -30,7 +30,7 @@ export default function Footer() {
       </div>
       <div className={`container ${s.bottom}`}>
         <span>&copy; {new Date().getFullYear()} Stress Free Group LLC. All rights reserved.</span>
-        <span>A Stress Free Group company</span>
+        <span>Website built by <a className={s.credit} href="https://www.stressfreegroup.com" target="_blank" rel="noreferrer">STRESS FREE GROUP</a> (<a className={s.credit} href="https://www.stressfreegroup.com" target="_blank" rel="noreferrer">www.StressFreeGroup.com</a>)</span>
       </div>
     </footer>
   )

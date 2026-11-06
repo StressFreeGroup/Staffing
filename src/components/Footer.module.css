@@ -8,3 +8,5 @@
 .cols a:hover { color: #fff; }
 .bottom { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; }
 @media (max-width: 860px) { .inner { grid-template-columns: 1fr; } .cols { grid-template-columns: 1fr 1fr; } }
+.credit { color: #fff; font-weight: 600; transition: color 0.2s; }
+.credit:hover { color: #d9b8ea; }
