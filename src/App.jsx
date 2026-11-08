@@ -1,18 +1,15 @@
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import ClientStrip from './components/ClientStrip'
-import About from './components/About'
-import Work from './components/Work'
-import Services from './components/Services'
-import Staffing from './components/Staffing'
-import Process from './components/Process'
-import Testimonials from './components/Testimonials'
-import Brands from './components/Brands'
-import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Home from './pages/Home'
+import ServicePage from './pages/ServicePage'
+import WorkPage from './pages/WorkPage'
+import NotFound from './pages/NotFound'
+import { resolve } from './site'
 
-export default function App() {
+export default function App({ path = '/' }) {
+  const route = resolve(path)
+
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target) } }),
@@ -24,18 +21,12 @@ export default function App() {
 
   return (
     <>
-      <Navbar />
-      <main>
-        <Hero />
-        <ClientStrip />
-        <About />
-        <Work />
-        <Services />
-        <Staffing />
-        <Process />
-        <Testimonials />
-        <Brands />
-        <Contact />
+      <Navbar home={route.type === 'home'} />
+      <main id="main">
+        {route.type === 'home' && <Home />}
+        {route.type === 'service' && <ServicePage service={route.service} />}
+        {route.type === 'work' && <WorkPage work={route.work} />}
+        {route.type === '404' && <NotFound />}
       </main>
       <Footer />
     </>

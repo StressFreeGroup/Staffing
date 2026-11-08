@@ -41,7 +41,7 @@ export default function Work() {
 
         <div className={s.grid}>
           {list.map((c, i) => (
-            <button key={c.id} className={`${s.card} ${wide.has(i) ? s.wide : ''}`} onClick={() => setOpen({ item: c, index: 0 })} aria-label={`View ${c.brand} — ${c.title}`}>
+            <a key={c.id} href={`/work/${c.id}`} className={`${s.card} ${wide.has(i) ? s.wide : ''}`}>
               <div className={s.media}>
                 <img src={c.images[0].src} width={c.images[0].w} height={c.images[0].h} alt={c.images[0].alt} loading="lazy" />
                 <span className={s.count}>{c.images.length} photos</span>
@@ -54,7 +54,7 @@ export default function Work() {
                 {c.agency && <span className={s.agency}>with {c.agency}</span>}
                 <span className={s.more}>View campaign <Icon name="arrow" size={16} /></span>
               </div>
-            </button>
+            </a>
           ))}
         </div>
 

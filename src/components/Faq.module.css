@@ -1,0 +1,14 @@
+.grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 4rem; align-items: start; }
+.link { color: var(--purple); font-weight: 600; border-bottom: 1px solid rgba(72,2,92,0.3); }
+.list { border-top: 1px solid var(--line); }
+.item { border-bottom: 1px solid var(--line); }
+.item summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 1.3rem 0; }
+.item summary::-webkit-details-marker { display: none; }
+.item summary h3 { font-family: var(--display); font-weight: 800; font-size: 1.05rem; color: var(--ink); }
+.item summary:hover h3 { color: var(--purple); }
+.item p { color: var(--muted); padding: 0 2.5rem 1.4rem 0; }
+.plus { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--purple-tint); position: relative; transition: transform 0.3s var(--ease); }
+.plus::before, .plus::after { content: ''; position: absolute; left: 50%; top: 50%; width: 12px; height: 2px; background: var(--purple); transform: translate(-50%, -50%); }
+.plus::after { transform: translate(-50%, -50%) rotate(90deg); transition: opacity 0.2s; }
+.item[open] .plus::after { opacity: 0; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; gap: 2rem; } }

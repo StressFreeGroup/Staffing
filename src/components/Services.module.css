@@ -10,3 +10,7 @@
 .venues li { font-size: 0.88rem; padding: 0.4rem 0.9rem; border-radius: 999px; background: var(--lav); color: var(--text); }
 @media (max-width: 1000px) { .grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+.card h3 a:hover { color: var(--purple); }
+.link { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 1rem; font-family: var(--display); font-weight: 700; font-size: 0.82rem; color: var(--purple); }
+.amb { margin-top: 1.5rem; color: var(--muted); }
+.amb a { color: var(--purple); font-weight: 600; border-bottom: 1px solid rgba(72,2,92,0.3); }

@@ -1,9 +1,9 @@
-.footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 4rem 0 2rem; }
+.footer { background: var(--purple-700); color: rgba(255,255,255,0.72); padding: 4rem 0 2rem; }
 .inner { display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; }
 .brand img { height: 52px; width: auto; margin-bottom: 1rem; }
 .brand p { max-width: 320px; font-size: 0.95rem; }
 .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-.cols h4 { font-family: var(--display); font-weight: 800; font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; margin-bottom: 0.9rem; }
+.cols h4 { font-family: var(--display); font-weight: 800; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; margin-bottom: 0.9rem; }
 .cols a { display: block; font-size: 0.93rem; padding: 0.25rem 0; transition: color 0.2s; word-break: break-word; }
 .cols a:hover { color: #fff; }
 .bottom { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; }

@@ -1,3 +1,4 @@
+import { services } from '../data/services'
 import s from './Footer.module.css'
 
 const family = [
@@ -15,12 +16,12 @@ export default function Footer() {
         </div>
         <nav className={s.cols} aria-label="Footer">
           <div>
-            <h4>Explore</h4>
-            <a href="#work">Past Work</a><a href="#services">Services</a><a href="#staffing">Staffing</a><a href="#clients">Clients</a>
+            <h4>Services</h4>
+            {services.map((sv) => <a key={sv.slug} href={`/services/${sv.slug}`}>{sv.name}</a>)}
           </div>
           <div>
             <h4>Contact</h4>
-            <a href="tel:+16196637262">(619) 663-7262</a><a href="mailto:Mike@StressFreeGroup.com">Mike@StressFreeGroup.com</a><a href="#contact">Request a Quote</a>
+            <a href="tel:+16196637262">(619) 663-7262</a><a href="mailto:Mike@StressFreeGroup.com">Mike@StressFreeGroup.com</a><a href="#contact">Request a Quote</a><a href="/#work">Past Work</a><a href="/#clients">Clients</a><a href="/#faq">FAQ</a>
           </div>
           <div>
             <h4>The Stress Free family</h4>

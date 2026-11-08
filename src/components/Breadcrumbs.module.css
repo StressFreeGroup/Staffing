@@ -1,0 +1,4 @@
+.crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: 0.85rem; color: var(--soft); margin-bottom: 1.25rem; }
+.crumbs li + li::before { content: '/'; margin-right: 0.4rem; color: var(--line); }
+.crumbs a { color: var(--purple-500); font-weight: 600; }
+.crumbs a:hover { color: var(--purple); }
