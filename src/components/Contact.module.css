@@ -17,3 +17,6 @@ a.method:hover { border-color: var(--purple); }
 .note a { color: var(--purple); font-weight: 600; }
 @media (max-width: 960px) { .grid { grid-template-columns: 1fr; gap: 2.5rem; } }
 @media (max-width: 560px) { .row, .row3 { grid-template-columns: 1fr; } .form { padding: 1.4rem; } }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form { position: relative; }
+.form :global(.btn[disabled]) { opacity: 0.7; cursor: wait; }
