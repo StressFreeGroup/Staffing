@@ -21,7 +21,7 @@ export default function Footer() {
           </div>
           <div>
             <h4>Contact</h4>
-            <a href="tel:+16196637262">(619) 663-7262</a><a href="mailto:Mike@StressFreeGroup.com">Mike@StressFreeGroup.com</a><a href="#contact">Request a Quote</a><a href="/#work">Past Work</a><a href="/#clients">Clients</a><a href="/#faq">FAQ</a>
+            <a href="tel:+16196637262">(619) 663-7262</a><a href="mailto:Mike@StressFreeGroup.com">Mike@StressFreeGroup.com</a><a href="#contact">Request a Quote</a><a href="/#work">Past Work</a><a href="/#clients">Clients</a><a href="/#faq">FAQ</a><a href="/portal/">Talent Portal</a><a href="/portal/#join">Join as Talent</a>
           </div>
           <div>
             <h4>The Stress Free family</h4>

@@ -24,6 +24,7 @@ export default function Navbar({ home = true }) {
             {links.map(([label, id]) => (
               <li key={id}><a href={home ? `#${id}` : `/#${id}`} onClick={() => setOpen(false)}>{label}</a></li>
             ))}
+            <li><a href="/portal/" onClick={() => setOpen(false)}>Talent Portal</a></li>
             <li><a href="#contact" className={`btn btnPrimary ${s.cta}`} onClick={() => setOpen(false)}>Request a Quote</a></li>
           </ul>
         </nav>
