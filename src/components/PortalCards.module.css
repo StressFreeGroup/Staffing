@@ -1,0 +1,88 @@
+.section { background: var(--lav, #f3f1f8); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.card {
+  background: white;
+  border-radius: var(--radius, 16px);
+  padding: 2rem;
+  text-decoration: none;
+  color: var(--ink, #1a1a2e);
+  border: 1px solid var(--line, #e4dff0);
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(28, 16, 35, 0.1);
+}
+
+.cardAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: var(--card-accent);
+  transition: height 0.3s;
+}
+
+.card:hover .cardAccent {
+  height: 4px;
+}
+
+.card h3 {
+  font-family: var(--display, 'Playfair Display', serif);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--card-accent);
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: var(--muted, #555);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+}
+
+.card ul {
+  list-style: none;
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.card li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--ink, #1a1a2e);
+}
+
+.check {
+  color: var(--card-accent);
+  font-weight: 700;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.link {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--card-accent);
+  margin-top: auto;
+}
+
+@media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }

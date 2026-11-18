@@ -1,13 +1,13 @@
 import Hero from '../components/Hero'
 import ClientStrip from '../components/ClientStrip'
+import CoverageMap from '../components/CoverageMap'
 import About from '../components/About'
 import Work from '../components/Work'
 import Services from '../components/Services'
 import SamplingStats from '../components/SamplingStats'
 import Staffing from '../components/Staffing'
-import CoverageMap from '../components/CoverageMap'
 import Process from '../components/Process'
-import Portals from '../components/Portals'
+import PortalCards from '../components/PortalCards'
 import Testimonials from '../components/Testimonials'
 import Brands from '../components/Brands'
 import Faq from '../components/Faq'
@@ -19,14 +19,14 @@ export default function Home() {
     <>
       <Hero />
       <ClientStrip />
+      <CoverageMap />
       <About />
       <Work />
       <Services />
       <SamplingStats />
       <Staffing />
-      <CoverageMap />
       <Process />
-      <Portals />
+      <PortalCards />
       <Testimonials />
       <Brands />
       <Faq items={homeFaqs} />

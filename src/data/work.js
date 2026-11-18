@@ -10,6 +10,7 @@ export const featured = [
     title: 'Arnold Sports Festival trade booth',
     type: 'Trade Show',
     where: 'Columbus, OH',
+    agency: 'Alternative Brand Marketing',
     summary:
       'Fitness-ready spokesmodel team for the Celsius booth at one of the largest fitness expos in the country: sampling, product education, influencer photo moments and a full weekend of crowd flow.',
     points: ['Spokesmodels & brand ambassadors', 'Sampling & product education', 'Influencer / social content support'],
@@ -115,6 +116,7 @@ export const more = [
     title: 'NYC field marketing & influencer events',
     type: 'Sampling',
     where: 'New York, NY',
+    agency: 'Alternative Brand Marketing',
     summary:
       'Season-long East Coast field program: street sampling teams, branded coolers and premium sampling at top-tier influencer events.',
     points: ['Street teams', 'Influencer event sampling', 'Monthly recaps & reporting'],
@@ -130,6 +132,7 @@ export const more = [
     title: 'Tri-state street fair sampling',
     type: 'Sampling',
     where: 'NY / NJ',
+    agency: 'Alternative Brand Marketing',
     summary:
       'Branded tents, wrapped van and high-volume cup sampling at tri-state street fairs, plus retail demos to drive trial to purchase.',
     points: ['High-volume sampling', 'Retail demos', 'Branded vehicle support'],
@@ -146,6 +149,7 @@ export const more = [
     title: 'VIP nightlife event',
     type: 'Nightlife',
     where: 'New Jersey',
+    agency: 'Alternative Brand Marketing',
     summary:
       'Spokesmodel and hosting team for a Rémy Martin VIP night: step-and-repeat, throne photo moment and premium pours.',
     points: ['Spokesmodels & hosts', 'VIP guest experience', 'Photo moments'],
@@ -177,6 +181,7 @@ export const more = [
     title: 'Soulcalibur IV gaming tour',
     type: 'Mobile Tour',
     where: 'U.S. & Canada',
+    agency: 'Alternative Brand Marketing',
     summary:
       'Multi-city game-demo tour across gaming expos: playable stations, tournaments, giveaways and booth teams from Dallas to Toronto.',
     points: ['Multi-city tour', 'Demo stations & tournaments', 'Giveaways'],
@@ -192,6 +197,7 @@ export const more = [
     title: 'National trade-show program',
     type: 'Trade Show',
     where: 'Las Vegas & New York',
+    agency: 'Alternative Brand Marketing',
     summary:
       'Booth production and spokesmodel teams for alcohol-removed wine at national beverage and hospitality shows.',
     points: ['Booth production', 'Trade spokesmodels', 'Lead capture'],
@@ -206,7 +212,7 @@ export const more = [
     title: 'College campus tour',
     type: 'Campus',
     where: 'Northeast colleges',
-    agency: 'Red Peg Marketing',
+    agency: 'Red Peg Marketing / Alternative Brand Marketing',
     summary:
       'Campus street teams, tailgates and Greek-life events putting cans in hands for SoBe Adrenaline Rush and No Fear.',
     points: ['Campus street teams', 'Tailgates & events', 'Cans-in-hands sampling'],
