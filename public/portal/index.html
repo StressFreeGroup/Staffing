@@ -1439,7 +1439,9 @@ async function portalSend(type,data){
   if(!/^https?:/.test(location.protocol)||!window.__PORTAL_API) return false;
   try{const r=await fetch(window.__PORTAL_API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({type,page:location.href,website:"",...data})});return r.ok}catch(e){return false}
 }
-function download(name,text,mime="text/plain"){
+let DL=null; if(window.claude&&window.claude.use) window.claude.use("downloads").then(d=>DL=d).catch(()=>{});
+async function download(name,text,mime="text/plain"){
+  if(DL){try{await DL.save({filename:name,data:text});toast("Saved "+name)}catch(e){toast("Download cancelled")}return}
   try{const b=new Blob([text],{type:mime+";charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);toast("Downloaded "+name)}
   catch(e){toast("Downloads are blocked here. Open the portal in a browser tab.")}
 }
@@ -1630,7 +1632,7 @@ function docList(list){return`<div class="panel" style="overflow:auto"><table cl
   ${ROLE==="admin"&&d.custom?` <button class="btn sm" data-rmdoc="${d.id}">Remove</button>`:""}</td></tr>`).join("")}</tbody></table></div>`}
 function bindDocButtons(root){
   $$(root+" [data-dl]").forEach(b=>b.onclick=()=>{const d=allDocs().find(x=>x.id===b.dataset.dl);if(!d)return;
-    if(d.gen){const [n,t,m]=d.gen();download(n,t,m)}else if(d.file){try{const a=document.createElement("a");a.href=d.file;a.download=d.name;document.body.appendChild(a);a.click();a.remove()}catch(e){toast("Download blocked here")}}});
+    if(d.gen){const [n,t,m]=d.gen();download(n,t,m)}else if(d.file){if(DL){Promise.resolve().then(()=>{const bin=atob(d.file.split(",")[1]),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return DL.save({filename:d.name,data:u})}).then(()=>toast("Saved "+d.name)).catch(()=>toast("Download cancelled"))}else{const a=document.createElement("a");a.href=d.file;a.download=d.name;document.body.appendChild(a);a.click();a.remove()}}});
   $$(root+" [data-golink]").forEach(b=>b.onclick=()=>{repTab="master";location.hash="reports";if(location.hash==="#reports")route()});
   $$(root+" [data-req]").forEach(b=>b.onclick=async()=>{const d=allDocs().find(x=>x.id===b.dataset.req);const who=ROLE==="client"?(store.get("client",null)||{company:CLIENT_DEMO.company}).company:ROLE==="staff"&&TB[staffMe]?cardName(TB[staffMe]):"Portal user";
     const reqs=store.get("docRequests",[]);reqs.push({doc:d.title,who,at:new Date().toISOString()});store.set("docRequests",reqs);
