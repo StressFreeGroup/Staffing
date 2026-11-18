@@ -3,7 +3,8 @@ import s from './Footer.module.css'
 
 const family = [
   ['Stress Free Group', 'https://www.stressfreegroup.com'],
-  ['Stress Free RVs', 'https://www.stressfreervs.com'],
+  ['Stress Free RVs: RV rentals, San Diego', 'https://stressfreervs.com/'],
+  ['Stress Free Golf Carts', 'https://www.stressfreegolfcarts.com'],
 ]
 
 export default function Footer() {
