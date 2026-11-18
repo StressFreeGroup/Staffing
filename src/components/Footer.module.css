@@ -10,3 +10,6 @@
 @media (max-width: 860px) { .inner { grid-template-columns: 1fr; } .cols { grid-template-columns: 1fr 1fr; } }
 .credit { color: #fff; font-weight: 600; transition: color 0.2s; }
 .credit:hover { color: #d9b8ea; }
+.abmBar { display: flex; align-items: center; gap: 0.75rem; padding: 1.25rem 0; margin-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+.abmBar img { border-radius: 6px; }
+.abmBar strong { color: rgba(255,255,255,0.8); }

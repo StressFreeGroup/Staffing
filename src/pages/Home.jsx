@@ -7,6 +7,7 @@ import Staffing from '../components/Staffing'
 import Process from '../components/Process'
 import Testimonials from '../components/Testimonials'
 import Brands from '../components/Brands'
+import PoweredBy from '../components/PoweredBy'
 import Faq from '../components/Faq'
 import Contact from '../components/Contact'
 import { homeFaqs } from '../data/services'
@@ -23,6 +24,7 @@ export default function Home() {
       <Process />
       <Testimonials />
       <Brands />
+      <PoweredBy />
       <Faq items={homeFaqs} />
       <Contact />
     </>
