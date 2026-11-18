@@ -1,16 +1,22 @@
 .bar {
-  display: block;
-  background: #2d8a4e;
-  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: #ffffff;
   text-decoration: none;
-  padding: 0.5rem 0;
-  position: relative;
-  z-index: 1001;
+  padding: 0.45rem 0;
+  border-bottom: 2px solid #2d8a4e;
   transition: background 0.2s;
+  color: #333;
 }
 
 .bar:hover {
-  background: #247a42;
+  background: #f7faf8;
 }
 
 .inner {
@@ -24,32 +30,33 @@
 }
 
 .emblem {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border-radius: 4px;
   flex-shrink: 0;
 }
 
 .text {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 400;
   letter-spacing: 0.02em;
-  color: rgba(255, 255, 255, 0.85);
+  color: #555;
   white-space: nowrap;
 }
 
 .text strong {
-  color: white;
+  color: #2d8a4e;
   font-weight: 700;
 }
 
 .divider {
   margin: 0 0.5rem;
-  opacity: 0.4;
+  opacity: 0.3;
+  color: #2d8a4e;
 }
 
 .since {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 @media (max-width: 640px) {

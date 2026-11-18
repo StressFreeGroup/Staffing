@@ -1,4 +1,4 @@
-.hero { padding: 8.5rem 0 3rem; background: linear-gradient(180deg, var(--lav) 0%, #fff 100%); }
+.hero { padding: 10.5rem 0 3rem; background: linear-gradient(180deg, var(--lav) 0%, #fff 100%); }
 .grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 3.5rem; align-items: center; }
 .copy h1 { font-family: var(--display); font-weight: 900; font-size: clamp(2.3rem, 4.6vw, 3.7rem); line-height: 1.05; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 1.25rem; }
 .copy h1 span { color: var(--purple); }
