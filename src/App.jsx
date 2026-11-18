@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import PoweredBy from './components/PoweredBy'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -21,6 +22,7 @@ export default function App({ path = '/' }) {
 
   return (
     <>
+      <PoweredBy />
       <Navbar home={route.type === 'home'} />
       <main id="main">
         {route.type === 'home' && <Home />}

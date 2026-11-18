@@ -30,10 +30,6 @@ export default function Footer() {
           </div>
         </nav>
       </div>
-      <div className={`container ${s.abmBar}`}>
-        <img src="/brand/abm-emblem.png" alt="ABM" width="36" height="36" loading="lazy" />
-        <span>Powered by <strong>Alternative Brand Marketing</strong> &mdash; independently operating since 2010</span>
-      </div>
       <div className={`container ${s.bottom}`}>
         <span>&copy; {new Date().getFullYear()} Stress Free Group LLC. All rights reserved.</span>
         <span>Website built by <a className={s.credit} href="https://www.stressfreegroup.com" target="_blank" rel="noreferrer">STRESS FREE GROUP</a> (<a className={s.credit} href="https://www.stressfreegroup.com" target="_blank" rel="noreferrer">www.StressFreeGroup.com</a>)</span>
