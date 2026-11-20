@@ -1,5 +1,8 @@
-import { useState } from 'react'
+import { useState, memo } from 'react'
+import { ComposableMap, Geographies, Geography, Marker, Annotation } from 'react-simple-maps'
 import s from './CoverageMap.module.css'
+
+const GEO_URL = 'https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/states-10m.json'
 
 const tiers = {
   best:    { label: 'Best',    color: '#6c3fa0' },
@@ -8,47 +11,144 @@ const tiers = {
   limited: { label: 'Limited', color: '#c9b8e0' },
 }
 
-const coverage = {
-  best: ['NY','NJ','CT','PA','CA','FL','TX','IL','GA','MA'],
-  better: ['OH','MI','NC','VA','MD','WA','OR','CO','AZ','TN','MN','WI','MO','IN','SC'],
-  good: ['LA','AL','KY','OK','NV','UT','NM','KS','AR','MS','IA','NE','WV','HI','DC','DE','RI','NH','VT','ME'],
-  limited: ['MT','WY','ND','SD','ID','AK'],
+// FIPS code to tier mapping
+const stateTiers = {
+  // Best
+  '36':'best','34':'best','09':'best','42':'best','06':'best','12':'best','48':'best','17':'best','13':'best','25':'best',
+  // Better
+  '39':'better','26':'better','37':'better','51':'better','24':'better','53':'better','41':'better','08':'better','04':'better',
+  '47':'better','27':'better','55':'better','29':'better','18':'better','45':'better',
+  // Limited
+  '30':'limited','56':'limited','38':'limited','46':'limited','16':'limited','02':'limited',
+  // Good = everything else
 }
 
-function getTier(abbr) {
-  for (const [key, states] of Object.entries(coverage)) {
-    if (states.includes(abbr)) return { key, ...tiers[key] }
-  }
-  return { key: 'good', ...tiers.good }
+function getTier(fips) {
+  return stateTiers[fips] || 'good'
 }
 
-// Grid-based state positions (column, row) for a hex/grid US map
-// This avoids overlapping circles by using a tile grid
-const grid = {
-  AK:[0,0], HI:[0,7],
-  WA:[1,1], OR:[1,2], CA:[1,4], NV:[2,3], ID:[2,1], MT:[3,0], WY:[3,1], UT:[2,2],
-  CO:[3,2], AZ:[2,4], NM:[3,4], ND:[4,0], SD:[4,1], NE:[4,2], KS:[4,3], OK:[4,4], TX:[4,5],
-  MN:[5,0], IA:[5,1], MO:[5,2], AR:[5,3], LA:[5,4], WI:[6,0], IL:[6,1], MS:[6,3],
-  MI:[7,0], IN:[6,2], KY:[7,2], TN:[7,3], AL:[7,4], OH:[8,1], WV:[8,2], VA:[8,3],
-  NC:[9,3], SC:[8,4], GA:[8,5], FL:[9,5], PA:[9,1], NY:[10,0], NJ:[10,1], MD:[9,2], DC:[9,2.5],
-  DE:[10,2], CT:[11,0], RI:[11,1], MA:[11,0.5], VT:[10.5,-0.5], NH:[11,-0.5], ME:[12,-0.5],
-}
+// Major cities with staff (lat/lng for markers + 60mi radius circles)
+const cities = [
+  { name: 'New York', lat: 40.7128, lng: -74.006 },
+  { name: 'Los Angeles', lat: 34.0522, lng: -118.2437 },
+  { name: 'San Diego', lat: 32.7157, lng: -117.1611, hq: true },
+  { name: 'Chicago', lat: 41.8781, lng: -87.6298 },
+  { name: 'Houston', lat: 29.7604, lng: -95.3698 },
+  { name: 'Miami', lat: 25.7617, lng: -80.1918 },
+  { name: 'Atlanta', lat: 33.749, lng: -84.388 },
+  { name: 'Dallas', lat: 32.7767, lng: -96.797 },
+  { name: 'San Francisco', lat: 37.7749, lng: -122.4194 },
+  { name: 'Boston', lat: 42.3601, lng: -71.0589 },
+  { name: 'Seattle', lat: 47.6062, lng: -122.3321 },
+  { name: 'Denver', lat: 39.7392, lng: -104.9903 },
+  { name: 'Phoenix', lat: 33.4484, lng: -112.074 },
+  { name: 'Philadelphia', lat: 39.9526, lng: -75.1652 },
+  { name: 'Las Vegas', lat: 36.1699, lng: -115.1398 },
+  { name: 'Nashville', lat: 36.1627, lng: -86.7816 },
+  { name: 'Charlotte', lat: 35.2271, lng: -80.8431 },
+  { name: 'Minneapolis', lat: 44.9778, lng: -93.265 },
+  { name: 'Portland', lat: 45.5155, lng: -122.6789 },
+  { name: 'Austin', lat: 30.2672, lng: -97.7431 },
+  { name: 'Tampa', lat: 27.9506, lng: -82.4572 },
+  { name: 'Orlando', lat: 28.5383, lng: -81.3792 },
+  { name: 'Columbus', lat: 39.9612, lng: -82.9988 },
+  { name: 'Detroit', lat: 42.3314, lng: -83.0458 },
+]
 
-const CELL = 48
-const PAD_X = 60
-const PAD_Y = 40
-const R = 20
+// 60 miles in degrees (approximate) - at US latitudes ~60mi = ~0.87 degrees
+const RADIUS_60MI = 0.87
+
+const MapChart = memo(function MapChart({ hover, setHover }) {
+  return (
+    <ComposableMap
+      projection="geoAlbersUsa"
+      projectionConfig={{ scale: 1000 }}
+      className={s.map}
+    >
+      <Geographies geography={GEO_URL}>
+        {({ geographies }) =>
+          geographies.map((geo) => {
+            const fips = geo.id
+            const tier = getTier(fips)
+            const color = tiers[tier].color
+            const isHovered = hover === fips
+            return (
+              <Geography
+                key={geo.rsmKey}
+                geography={geo}
+                fill={color}
+                stroke="rgba(255,255,255,0.5)"
+                strokeWidth={0.5}
+                onMouseEnter={() => setHover(fips)}
+                onMouseLeave={() => setHover(null)}
+                style={{
+                  default: { fill: color, outline: 'none', opacity: 0.88 },
+                  hover: { fill: color, outline: 'none', opacity: 1, strokeWidth: 1.5, stroke: '#1a1a2e' },
+                  pressed: { fill: color, outline: 'none' },
+                }}
+              />
+            )
+          })
+        }
+      </Geographies>
+
+      {/* 60-mile radius circles around major cities */}
+      {cities.map((city) => (
+        <Marker key={city.name} coordinates={[city.lng, city.lat]}>
+          <circle
+            r={city.hq ? 12 : 8}
+            fill="none"
+            stroke={city.hq ? '#6c3fa0' : 'rgba(108,63,160,0.4)'}
+            strokeWidth={city.hq ? 2 : 1}
+            strokeDasharray={city.hq ? '0' : '3 2'}
+          />
+          <circle
+            r={city.hq ? 20 : 0}
+            fill="none"
+            stroke="rgba(108,63,160,0.2)"
+            strokeWidth={1}
+            strokeDasharray="4 3"
+          />
+          <circle
+            r={3}
+            fill={city.hq ? '#6c3fa0' : 'rgba(108,63,160,0.7)'}
+            stroke="white"
+            strokeWidth={city.hq ? 2 : 1}
+          />
+        </Marker>
+      ))}
+
+      {/* HQ label */}
+      <Annotation
+        subject={[-117.1611, 32.7157]}
+        dx={-30}
+        dy={-20}
+        connectorProps={{ stroke: '#6c3fa0', strokeWidth: 1 }}
+      >
+        <text fill="#6c3fa0" fontSize={10} fontWeight="700" fontFamily="var(--body, sans-serif)" textAnchor="end">
+          HQ: San Diego
+        </text>
+      </Annotation>
+    </ComposableMap>
+  )
+})
+
+// FIPS to state name for tooltip
+const fipsNames = {
+  '01':'Alabama','02':'Alaska','04':'Arizona','05':'Arkansas','06':'California','08':'Colorado','09':'Connecticut',
+  '10':'Delaware','11':'District of Columbia','12':'Florida','13':'Georgia','15':'Hawaii','16':'Idaho','17':'Illinois',
+  '18':'Indiana','19':'Iowa','20':'Kansas','21':'Kentucky','22':'Louisiana','23':'Maine','24':'Maryland','25':'Massachusetts',
+  '26':'Michigan','27':'Minnesota','28':'Mississippi','29':'Missouri','30':'Montana','31':'Nebraska','32':'Nevada',
+  '33':'New Hampshire','34':'New Jersey','35':'New Mexico','36':'New York','37':'North Carolina','38':'North Dakota',
+  '39':'Ohio','40':'Oklahoma','41':'Oregon','42':'Pennsylvania','44':'Rhode Island','45':'South Carolina',
+  '46':'South Dakota','47':'Tennessee','48':'Texas','49':'Utah','50':'Vermont','51':'Virginia','53':'Washington',
+  '54':'West Virginia','55':'Wisconsin','56':'Wyoming',
+}
 
 export default function CoverageMap() {
   const [hover, setHover] = useState(null)
-
-  const getPos = (ab) => {
-    const [col, row] = grid[ab] || [0,0]
-    return { x: PAD_X + col * CELL, y: PAD_Y + row * CELL }
-  }
-
-  // HQ position (San Diego = California area, slightly south)
-  const hq = { x: PAD_X + 1 * CELL, y: PAD_Y + 5.2 * CELL }
+  const hoverName = hover ? fipsNames[hover] : null
+  const hoverTier = hover ? tiers[getTier(hover)] : null
 
   return (
     <section className={`section ${s.section}`} id="coverage">
@@ -59,65 +159,24 @@ export default function CoverageMap() {
           <p className="lede">We activate in every major U.S. market. Our database of 20,000+ professionals spans all 50 states, with the deepest bench in the markets that matter most.</p>
         </div>
         <div className={`${s.mapWrap} reveal`}>
-          <svg viewBox="0 -20 680 400" className={s.map} role="img" aria-label="U.S. coverage map showing staffing presence in all 50 states">
-            {/* HQ radius rings */}
-            <circle cx={hq.x} cy={hq.y} r={160} fill="none" stroke="var(--purple, #6c3fa0)" strokeWidth="1" strokeDasharray="6 4" opacity="0.12" />
-            <circle cx={hq.x} cy={hq.y} r={100} fill="none" stroke="var(--purple, #6c3fa0)" strokeWidth="1" strokeDasharray="6 4" opacity="0.18" />
-            <circle cx={hq.x} cy={hq.y} r={45} fill="none" stroke="var(--purple, #6c3fa0)" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.3" />
+          <MapChart hover={hover} setHover={setHover} />
 
-            {/* State tiles */}
-            {Object.keys(grid).map((ab) => {
-              const pos = getPos(ab)
-              const tier = getTier(ab)
-              const isHovered = hover === ab
-              return (
-                <g key={ab}
-                  onMouseEnter={() => setHover(ab)}
-                  onMouseLeave={() => setHover(null)}
-                  style={{ cursor: 'default' }}
-                >
-                  <rect
-                    x={pos.x - R} y={pos.y - R}
-                    width={R * 2} height={R * 2}
-                    rx={6}
-                    fill={tier.color}
-                    opacity={isHovered ? 1 : 0.88}
-                    stroke={isHovered ? 'var(--ink, #1a1a2e)' : 'rgba(255,255,255,0.6)'}
-                    strokeWidth={isHovered ? 2 : 0.5}
-                    style={{ transition: 'all 0.15s' }}
-                  />
-                  <text
-                    x={pos.x} y={pos.y + 1}
-                    textAnchor="middle" dominantBaseline="central"
-                    fill="white" fontSize="11" fontWeight="700"
-                    fontFamily="var(--body, 'Outfit', sans-serif)"
-                    style={{ pointerEvents: 'none' }}
-                  >{ab}</text>
-                </g>
-              )
-            })}
-
-            {/* HQ pin */}
-            <circle cx={hq.x} cy={hq.y} r={5} fill="var(--purple, #6c3fa0)" stroke="white" strokeWidth="2" />
-            <text x={hq.x + 12} y={hq.y + 4} fill="var(--purple, #6c3fa0)" fontSize="9" fontWeight="700" fontFamily="var(--body, sans-serif)">HQ</text>
-          </svg>
-
-          {hover && (
+          {hoverName && (
             <div className={s.tooltip}>
-              <strong>{hover}</strong> — {getTier(hover).label} coverage
+              <strong>{hoverName}</strong> — {hoverTier.label} coverage
             </div>
           )}
 
           <div className={s.legend}>
-            {Object.entries(tiers).map(([, t]) => (
+            {Object.values(tiers).map((t) => (
               <div key={t.label} className={s.legendItem}>
                 <span className={s.legendDot} style={{ background: t.color }} />
                 {t.label}
               </div>
             ))}
             <div className={s.legendItem}>
-              <span className={s.legendDot} style={{ background: 'var(--purple, #6c3fa0)' }} />
-              HQ: San Diego
+              <span className={s.legendDot} style={{ background: '#6c3fa0', borderRadius: '50%' }} />
+              Staff Markets
             </div>
           </div>
         </div>
