@@ -3,6 +3,7 @@ import s from './PortalCards.module.css'
 const portals = [
   {
     slug: 'talent-portal',
+    href: '/portal/#coverage',
     title: 'Talent Portal',
     desc: 'Where our 20,000+ professionals manage profiles, availability, certifications, shifts, training, and earnings.',
     highlights: ['Profile & skills management', 'Shift assignments & GPS check-in', 'Training materials & brand education', 'Earnings history & documents'],
@@ -10,6 +11,7 @@ const portals = [
   },
   {
     slug: 'client-portal',
+    href: '/portal/#client',
     title: 'Client Portal',
     desc: 'Your campaign command center. Submit requests, review staff, approve teams, and track every activation in real time.',
     highlights: ['Submit staffing requests', 'Review & approve talent', 'Real-time shift tracking', 'Invoices & budget tracking'],
@@ -17,6 +19,7 @@ const portals = [
   },
   {
     slug: 'reporting-portal',
+    href: '/portal/#reports',
     title: 'Reporting Portal',
     desc: 'Quantitative and qualitative reporting that drives smarter campaigns. Real numbers, real photos, real feedback.',
     highlights: ['Impressions & interaction data', 'GPS-verified attendance', 'Photo documentation', 'ROI dashboards & exports'],
@@ -35,7 +38,7 @@ export default function PortalCards() {
         </div>
         <div className={s.grid}>
           {portals.map((p) => (
-            <a key={p.slug} href={`/portals/${p.slug}`} className={`${s.card} reveal`} style={{ '--card-accent': p.color }}>
+            <a key={p.slug} href={p.href} className={`${s.card} reveal`} style={{ '--card-accent': p.color }}>
               <div className={s.cardAccent} />
               <h3>{p.title}</h3>
               <p>{p.desc}</p>

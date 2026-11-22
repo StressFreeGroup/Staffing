@@ -27,17 +27,7 @@
 }
 
 .cardAccent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 0;
-  background: var(--card-accent);
-  transition: height 0.3s;
-}
-
-.card:hover .cardAccent {
-  height: 4px;
+  display: none;
 }
 
 .card h3 {

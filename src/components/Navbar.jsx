@@ -4,9 +4,9 @@ import s from './Navbar.module.css'
 const links = [['Work', 'work'], ['Services', 'services'], ['Staffing', 'staffing'], ['Process', 'process'], ['Clients', 'clients']]
 
 const portalLinks = [
-  { label: 'Talent Portal', href: '/portals/talent-portal', color: '#6c3fa0' },
-  { label: 'Client Portal', href: '/portals/client-portal', color: '#2d8a4e' },
-  { label: 'Reporting Portal', href: '/portals/reporting-portal', color: '#3a7bd5' },
+  { label: 'Talent Portal', href: '/portal/#coverage', color: '#6c3fa0' },
+  { label: 'Client Portal', href: '/portal/#client', color: '#2d8a4e' },
+  { label: 'Reporting Portal', href: '/portal/#reports', color: '#3a7bd5' },
 ]
 
 export default function Navbar({ home = true }) {
