@@ -989,7 +989,7 @@ function renderClient(){
   if(client){w.innerHTML=`<div class="panel done-box"><div class="okicon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg></div><h2>Client account active</h2><p class="muted" style="max-width:540px;margin:0 auto 20px">${esc(client.company)} is registered with ${esc(client.contact)} as the main contact. Search talent, build a shortlist and send booking requests from your shortlist.</p><div style="display:flex;gap:8px;justify-content:center"><a class="btn" href="#talent">Search talent</a><a class="btn primary" href="#shortlist">Go to shortlist</a><button class="btn" id="cOut">Sign out</button></div></div>`;
     $("#cOut").onclick=()=>{client=null;store.set("client",null);renderClient()};return}
   const cc=new Set(), pg=new Set(), mk=new Set();
-  w.innerHTML=`<div class="formhead"><div><h1>Staff your next<br>event with us.</h1><p>Register as a client to save shortlists, request talent by market, and get a quote from the Stress Free Staffing team.</p></div></div>
+  w.innerHTML=`<div class="formhead"><div><h1>Staff your next event<br>with Stress Free Staffing</h1><p>Register as a client to save shortlists, request talent by market, and get a quote from the Stress Free Staffing team.</p></div></div>
   <div class="panel pad"><div class="fgrid">
     ${fld("Company name","cCompany","","","c2")}${sel("Company type","cType",COMPANY_TYPES,"","c2")}
     ${fld("Contact name","cContact","","","")}${fld("Title","cTitle","","","")}${fld("Work email","cEmail","",'type="email"',"")}${fld("Phone","cPhone","",'type="tel"',"")}
@@ -997,7 +997,7 @@ function renderClient(){
     <div class="c4"><label class="f">Program types</label><div class="chips" id="cPg">${PROGRAM_TYPES.map(p=>`<button type="button" class="chip" data-v="${esc(p)}">${esc(p)}</button>`).join("")}</div></div>
     <div class="c4"><label class="f">Industry</label><div class="chips" id="cInd">${INDUSTRIES.map(p=>`<button type="button" class="chip" data-v="${esc(p)}">${esc(p)}</button>`).join("")}</div></div>
     <div class="c4"><label class="f">Markets you need staffed</label><div class="chips" id="cMk">${CITIES.filter(c=>c.pop).map(c=>`<button type="button" class="chip" data-v="${esc(c.key)}">${esc(c.key)}</button>`).join("")}</div></div>
-    ${sel("How did you hear about us?","cHeard",["Referral","Google search","Instagram","LinkedIn","Past client","Event or trade show","Other"],"","c2")}${fld("Password","cPw","",'type="password" placeholder="At least 8 characters"',"c2")}
+    ${sel("How did you hear about us?","cHeard",["Referral","Google search","AI search","Instagram","LinkedIn","Past client","Event or trade show","Other"],"","c2")}${fld("Password","cPw","",'type="password" placeholder="At least 8 characters"',"c2")}
     <div class="c4"><label class="f" for="cNotes">Anything we should know?</label><textarea class="in" id="cNotes" placeholder="Upcoming dates, markets, special requirements"></textarea></div>
     <div class="c4"><label class="check"><input type="checkbox" id="cAgree"> I agree to the Stress Free Staffing client terms. Rates and availability are confirmed per booking.</label><div id="cErr" class="small" style="color:#A3262A;margin-top:10px"></div></div>
   </div><div class="formnav"><span class="small muted">Talent contact details stay private; all bookings go through Stress Free Staffing.</span><button class="btn primary" id="cSubmit">Create client account</button></div></div>`;
