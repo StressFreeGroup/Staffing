@@ -11,7 +11,7 @@ export default function Faq({ items, title = 'Frequently asked questions', eyebr
         </div>
         <div className={`${s.list} reveal`}>
           {items.map(([q, a], i) => (
-            <details key={q} className={s.item} open={i === 0}>
+            <details key={q} className={s.item} open>
               <summary><h3>{q}</h3><span className={s.plus} aria-hidden="true" /></summary>
               <p>{a}</p>
             </details>
