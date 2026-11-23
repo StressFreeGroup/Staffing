@@ -15,7 +15,10 @@ a.method:hover { border-color: var(--purple); }
 .form :global(.btn) { justify-content: center; margin-top: 0.25rem; }
 .note { font-size: 0.9rem; color: var(--muted); }
 .note a { color: var(--purple); font-weight: 600; }
-@media (max-width: 960px) { .grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+.mascot { text-align: center; margin-top: 2.5rem; }
+.mascot img { max-width: 220px; height: auto; filter: drop-shadow(0 8px 24px rgba(108, 63, 160, 0.15)); }
+.motto { font-family: var(--display); font-weight: 800; font-size: 1.3rem; color: var(--purple); margin-top: 0.75rem; letter-spacing: 0.02em; }
+@media (max-width: 960px) { .grid { grid-template-columns: 1fr; gap: 2.5rem; } .mascot img { max-width: 180px; } }
 @media (max-width: 560px) { .row, .row3 { grid-template-columns: 1fr; } .form { padding: 1.4rem; } }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .form { position: relative; }

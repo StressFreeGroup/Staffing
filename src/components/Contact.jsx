@@ -46,6 +46,10 @@ export default function Contact() {
             <a href={`mailto:${EMAIL}`} className={s.method}><span><Icon name="mail" /></span><div><small>Email</small>{EMAIL}</div></a>
             <div className={s.method}><span><Icon name="pin" /></span><div><small>Coverage</small>Nationwide · HQ San Diego, CA</div></div>
           </div>
+          <div className={s.mascot}>
+            <img src="/brand/characters/stress-free-man.png" width="400" height="600" alt="Stress Free Man — Be Stress Free" loading="lazy" />
+            <p className={s.motto}>Be Stress Free.</p>
+          </div>
         </div>
         <form className={`${s.form} reveal`} onSubmit={submit}>
           <div className={s.row}>

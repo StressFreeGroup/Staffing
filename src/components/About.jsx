@@ -13,8 +13,8 @@ export default function About() {
     <section className="section" id="about">
       <div className={`container ${s.grid}`}>
         <div className={`${s.photo} reveal`}>
-          <img src="/work/remy-team.webp" width="1400" height="933" alt="Event hosts at a Rémy Martin VIP night" loading="lazy" />
-          <img className={s.inset} src="/work/aqua-lineup.webp" width="1400" height="788" alt="AQUAhydrate sampling team" loading="lazy" />
+          <img src="/brand/characters/sf-duo-polo-clean.png" width="1400" height="788" alt="Stress Free Man and Stress Free Woman — Be Stress Free" loading="lazy" />
+          <img className={s.inset} src="/work/remy-team.webp" width="1400" height="933" alt="Event hosts at a Rémy Martin VIP night" loading="lazy" />
         </div>
         <div className="reveal">
           <span className="eyebrow">Why Stress Free</span>
