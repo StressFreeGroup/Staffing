@@ -843,6 +843,19 @@ function openProfile(id){
     ${!draft?`<div class="psec"><div class="pt">Skills</div>${tags(t.skills)}</div><div class="psec"><div class="pt">Certifications</div>${tags(t.certs,"None listed")}</div>`:""}
     ${can.social()&&!draft&&(t.instagram||t.tiktok)?`<div class="psec"><div class="pt">Social</div>${t.instagram?`<span class="tag">Instagram ${esc(t.instagram)}</span>`:""}${t.tiktok?`<span class="tag">TikTok ${esc(t.tiktok)}</span>`:""}</div>`:""}
     <div class="psec"><div class="pt">Public reviews</div>${pub.length?pub.map(r=>`<div class="qbox">${esc(r.publicNote)}</div>`).join(""):`<span class="muted small">No public reviews yet</span>`}</div>
+    ${can.admin()?`<div class="panel pad" style="margin-top:16px;box-shadow:none;background:var(--p50)">
+      <div class="lbl2" style="margin-bottom:10px">Contact info (team only)</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        ${t.em?`<div><span class="mini">Email</span><div style="font-weight:600"><a href="mailto:${esc(t.em)}" style="color:var(--p600)">${esc(t.em)}</a></div></div>`:""}
+        ${t.tel?`<div><span class="mini">Phone</span><div style="font-weight:600"><a href="tel:${esc(t.tel)}" style="color:var(--p600)">${esc(t.tel)}</a></div></div>`:""}
+        ${t.lname?`<div><span class="mini">Full name</span><div style="font-weight:600">${esc(t.first)} ${esc(t.lname)}</div></div>`:""}
+        ${t.org?`<div><span class="mini">Organization</span><div style="font-weight:600">${esc(t.org)}${t.title?" &middot; "+esc(t.title):""}</div></div>`:""}
+        ${t.web?`<div><span class="mini">Website / Social</span><div style="font-weight:600"><a href="${esc(t.web)}" target="_blank" rel="noreferrer" style="color:var(--p600)">${esc(t.web)}</a></div></div>`:""}
+        ${t.city_full?`<div><span class="mini">Location</span><div style="font-weight:600">${esc(t.city_full)}${t.state?", "+esc(t.state):""}</div></div>`:""}
+      </div>
+      ${t.notes?`<div style="margin-top:10px"><span class="mini">Notes</span><div style="font-size:14px;margin-top:4px;white-space:pre-wrap">${esc(t.notes)}</div></div>`:""}
+      ${!t.em&&!t.tel?`<div class="mini">No contact info on file. This talent needs to activate their profile to add contact details.</div>`:""}
+    </div>`:""}
     ${can.admin()?`<div class="note" style="margin-top:14px"><div class="lbl2" style="margin-bottom:8px">Internal only: sources &amp; flags</div>${t.src.map(s=>`<span class="tag">${esc(SRC_NAMES[s]||s)}</span>`).join("")}${t.flags.map(f=>`<span class="tag" style="background:#FDECEC;border-color:#F3C9C9;color:#A3262A">${esc(FLAG_NAMES[f]||f)}</span>`).join("")}${t.def?`<span class="tag">Updated from Nov 2026 STAFF file</span>`:""}${t.dup?`<span class="tag">Merged ${t.dup} duplicate record${t.dup>1?"s":""}</span>`:""}
       <div class="mini" style="margin-top:6px">${t.flags.includes("bot")?"Name was scrambled in the Look Media database (classic spam-bot sign-up pattern). Name corrected from the email; excluded from invites until verified. ":""}${t.flags.includes("dnh")?"DNH in your contacts: excluded from invites and hidden from clients. ":""}${t.flags.includes("review")?"Flagged for review: excluded from the first invite wave. ":""}</div></div>`:""}
     ${ROLE==="client"?`<div class="panel pad" style="margin-top:16px;box-shadow:none"><div class="lbl2" style="margin-bottom:8px">Private to your team</div>
