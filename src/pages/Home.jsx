@@ -7,6 +7,7 @@ import Services from '../components/Services'
 import SamplingStats from '../components/SamplingStats'
 import Staffing from '../components/Staffing'
 import Process from '../components/Process'
+import BrandMascots from '../components/BrandMascots'
 import PortalCards from '../components/PortalCards'
 import Testimonials from '../components/Testimonials'
 import Brands from '../components/Brands'
@@ -26,6 +27,7 @@ export default function Home() {
       <SamplingStats />
       <Staffing />
       <Process />
+      <BrandMascots />
       <PortalCards />
       <Testimonials />
       <Brands />
