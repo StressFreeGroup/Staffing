@@ -717,7 +717,7 @@ function renderFilters(){
   <div class="sec"><div class="st">Positions <button data-clear="positions">Clear</button></div>${Object.entries(POSITIONS).map(([g,a])=>`<div class="chipgroup"><div class="gl" style="font-size:12px">${esc(g)}</div>${chipSet("positions",a)}</div>`).join("")}</div>
   <div class="sec"><div class="st">Tier &amp; badges <button data-clear="tier">Clear</button></div>${chipSet("tier",TIERS)}<div style="height:10px"></div>${chipSet("tags",["All-Star","Spirits","Model"])}
     <label class="check" style="margin-top:12px"><input type="checkbox" id="f21" ${F.age21?"checked":""}> 21+ (alcohol brands)</label></div>
-  <div class="sec"><div class="st">Past programs <button data-clear="programs">Clear</button></div>${chipSet("programs",ALL_PROGRAMS())}</div>
+  ${can.admin()?`<div class="sec"><div class="st">Past programs (team only) <button data-clear="programs">Clear</button></div>${chipSet("programs",ALL_PROGRAMS())}</div>`:""}
   <div class="sec"><div class="st">Industry experience <button data-clear="industries">Clear</button></div>${chipSet("industries",INDUSTRIES)}</div>
   <div class="sec"><div class="st">Languages (fluent) <button data-clear="langs">Clear</button></div>${chipSet("langs",LANGS.slice(0,12))}</div>
   <div class="sec"><div class="st">Skills <button data-clear="skills">Clear</button></div>${chipSet("skills",ALL_SKILLS.slice(0,24))}</div>
@@ -728,14 +728,14 @@ function renderFilters(){
     <label class="f" style="margin-top:12px">Hair color</label>${chipSet("hair",HAIR.slice(0,8))}
     <div class="mini" style="margin-top:10px">Sizing filters only match activated profiles.</div>
   </div>
-  <div class="sec"><button class="btn" style="width:100%" id="fReset">Reset all filters</button></div>`;
+  <div class="sec"><button class="btn primary" style="width:100%;margin-bottom:10px" id="fSearch">Search Talent</button><button class="btn" style="width:100%" id="fReset">Reset all filters</button></div>`;
   $$("#filters .chip").forEach(b=>b.onclick=()=>{const s=F[b.dataset.k];s.has(b.dataset.v)?s.delete(b.dataset.v):s.add(b.dataset.v);b.classList.toggle("on");shown=24;renderResults()});
   $$("#filters [data-clear]").forEach(b=>b.onclick=()=>{F[b.dataset.clear].clear();renderFilters();renderResults()});
   const bind=(id,k,fn=v=>v)=>$(id).onchange=e=>{F[k]=fn(e.target.value);shown=24;renderResults()};
   bind("#fNear","near");bind("#fRad","radius",Number);bind("#fState","state");bind("#fHmin","hmin");bind("#fHmax","hmax");bind("#fStatus","status");
   $("#f21").onchange=e=>{F.age21=e.target.checked;renderResults()};
   if($("#fPh")) $("#fPh").onchange=e=>{F.hasPhoto=e.target.checked;renderResults()};
-  $("#fReset").onclick=()=>{resetFilters();renderFilters();renderResults()};
+  $("#fSearch").onclick=()=>{shown=24;renderResults();document.querySelector("#cards").scrollIntoView({behavior:"smooth",block:"start"})};$("#fReset").onclick=()=>{resetFilters();renderFilters();renderResults()};
 }
 const anyOf=(set,arr)=>!set.size||arr.some(v=>set.has(v));
 const allOf=(set,arr)=>!set.size||[...set].every(v=>arr.includes(v));
@@ -767,7 +767,7 @@ const CHECK=`<svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M5 1
 const HEART=(on)=>`<svg width="18" height="18" viewBox="0 0 24 24" fill="${on?"#5E2CA5":"none"}" stroke="#5E2CA5" stroke-width="2"><path d="M12 21s-7.5-4.6-9.5-9.3C1.1 8.3 3.3 5 6.6 5c2 0 3.4 1.1 4.4 2.5C12 6.1 13.4 5 15.4 5c3.3 0 5.5 3.3 4.1 6.7C19.5 16.4 12 21 12 21z"/></svg>`;
 function card(t){
   const c=cityOf(t), more=t.positions.length>2?` +${t.positions.length-2}`:"", fav=favs.includes(t.id)||staffFavs.includes(t.id);
-  const meta=isDraft(t)?`<span>${t.programs.length?esc(t.programs[0])+(t.programs.length>1?` +${t.programs.length-1}`:""):"No programs on record"}</span><span class="pill gray" style="height:20px">Pending</span>`
+  const meta=isDraft(t)?`${can.admin()?`<span>${t.programs.length?esc(t.programs[0])+(t.programs.length>1?` +${t.programs.length-1}`:""):"No programs on record"}</span>`:"<span>Pending activation</span>"}<span class="pill gray" style="height:20px">Pending</span>`
     :`<span>${t.height?ftin(t.height):"-"} &middot; ${esc(t.shirt||"-")} &middot; ${esc(t.langs.join(", "))}</span><span class="rt">${STAR}${t.rating?t.rating.toFixed(1):"New"}</span>`;
   return`<div class="card ${selected.has(t.id)?"sel":""}" data-id="${t.id}">
     <div class="ph" data-open="${t.id}"><img src="${photoOf(t,"head")}" alt="${esc(cardName(t))}" loading="lazy" decoding="async">
@@ -838,7 +838,7 @@ function openProfile(id){
     <div class="specs">${spec("Height",t.height&&ftin(t.height))}${spec("Weight",t.weight&&t.weight+" lb")}${spec("Hair",esc(t.hair||""))}${spec("Eyes",esc(t.eyes||""))}${spec("Shirt",esc(t.shirt||""))}${spec("Waist",t.waist&&t.waist+'"')}${spec("Pant length",t.inseam&&t.inseam+'"')}${spec("Shoe",esc(t.shoe||""))}</div>
     ${t.bio?`<p style="margin:0">${esc(t.bio)}</p>`:""}
     <div class="psec"><div class="pt">Positions</div>${tags(t.positions)}</div>
-    <div class="psec"><div class="pt">Past programs</div>${tags(t.programs,"None on record yet")}</div>
+    ${can.admin()?`<div class="psec"><div class="pt">Past programs</div>${tags(t.programs,"None on record yet")}</div>`:""}
     <div class="grid2" style="gap:0 20px"><div class="psec"><div class="pt">Languages (fluent)</div>${tags(t.langs)}</div><div class="psec"><div class="pt">Industry experience</div>${tags(t.industries)}</div></div>
     ${!draft?`<div class="psec"><div class="pt">Skills</div>${tags(t.skills)}</div><div class="psec"><div class="pt">Certifications</div>${tags(t.certs,"None listed")}</div>`:""}
     ${can.social()&&!draft&&(t.instagram||t.tiktok)?`<div class="psec"><div class="pt">Social</div>${t.instagram?`<span class="tag">Instagram ${esc(t.instagram)}</span>`:""}${t.tiktok?`<span class="tag">TikTok ${esc(t.tiktok)}</span>`:""}</div>`:""}
@@ -870,7 +870,7 @@ function compareTable(ids){
   const row=(l,f)=>`<tr><th>${l}</th>${ts.map(t=>`<td>${f(t)}</td>`).join("")}</tr>`;
   return`<div class="cmp"><table class="t"><tr><th></th>${ts.map(t=>`<td><img class="av" style="width:88px;height:110px" src="${photoOf(t,"head")}" alt=""><div style="font-weight:700;margin-top:6px">${esc(cardName(t))}</div></td>`).join("")}</tr>
   ${row("Status",t=>isDraft(t)?"Pending activation":"Better")}${row("Tier",t=>esc(t.tier))}${row("Market",t=>esc(cityOf(t).name+(cityOf(t).st?", "+cityOf(t).st:"")))}${row("Positions",t=>esc(t.positions.join(", ")))}
-  ${row("Past programs",t=>esc(t.programs.join(", ")||"-"))}${row("Badges",t=>esc(t.tags.join(", ")||"-"))}${row("Height",t=>t.height?ftin(t.height):"-")}${row("Shirt",t=>esc(t.shirt||"-"))}${row("Languages",t=>esc(t.langs.join(", ")||"-"))}</table></div>`;
+  ${can.admin()?row("Past programs",t=>esc(t.programs.join(", ")||"-")):""}${row("Badges",t=>esc(t.tags.join(", ")||"-"))}${row("Height",t=>t.height?ftin(t.height):"-")}${row("Shirt",t=>esc(t.shirt||"-"))}${row("Languages",t=>esc(t.langs.join(", ")||"-"))}</table></div>`;
 }
 function openCompare(ids){
   if(ids.length<2){toast("Select at least 2 people to compare");return}
